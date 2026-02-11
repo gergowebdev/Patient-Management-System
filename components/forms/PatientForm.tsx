@@ -2,17 +2,22 @@
 
 import * as z from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { Controller, useForm } from "react-hook-form";
+import { useForm } from "react-hook-form";
 // import { toast } from "sonner";
 import { Button } from "@/components/ui/button";
 
-import {
-    Field,
-    FieldError,
-    FieldGroup,
-    FieldLabel,
-} from "@/components/ui/field";
-import { Input } from "@/components/ui/input";
+import { Field, FieldGroup } from "@/components/ui/field";
+import CustomFormController from "../CustomFormController";
+
+export enum FormFieldType {
+    INPUT = "input",
+    TEXTAREA = "textarea",
+    PHONE_INPUT = "phoneInput",
+    CHECKBOX = "checkbox",
+    DATE_PICKER = "datePicker",
+    SELECT = "select",
+    SKELETON = "skeleton",
+}
 
 const formSchema = z.object({
     username: z.string().min(2, {
@@ -48,26 +53,14 @@ const PatientForm = () => {
                     </p>
                 </section>
                 <FieldGroup>
-                    <Controller
-                        name="username"
+                    <CustomFormController
+                        fieldType={FormFieldType.INPUT}
                         control={form.control}
-                        render={({ field, fieldState }) => (
-                            <Field data-invalid={fieldState.invalid}>
-                                <FieldLabel htmlFor="form-rhf-demo-title">
-                                    Username
-                                </FieldLabel>
-                                <Input
-                                    {...field}
-                                    id="form-rhf-demo-title"
-                                    aria-invalid={fieldState.invalid}
-                                    placeholder="shadcn"
-                                    autoComplete="off"
-                                />
-                                {fieldState.invalid && (
-                                    <FieldError errors={[fieldState.error]} />
-                                )}
-                            </Field>
-                        )}
+                        name="name"
+                        label="Full name"
+                        placeholder="John Doe"
+                        iconSrc="/assets/icons/user.svg"
+                        iconAlt="user"
                     />
                 </FieldGroup>
             </form>
