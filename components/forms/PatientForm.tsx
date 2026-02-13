@@ -52,6 +52,7 @@ const PatientForm = () => {
                         Schedule your first appointment.
                     </p>
                 </section>
+
                 <FieldGroup>
                     <CustomFormController
                         fieldType={FormFieldType.INPUT}
@@ -61,6 +62,22 @@ const PatientForm = () => {
                         placeholder="John Doe"
                         iconSrc="/assets/icons/user.svg"
                         iconAlt="user"
+                    />
+                    <CustomFormController
+                        fieldType={FormFieldType.INPUT}
+                        control={form.control}
+                        name="email"
+                        label="Email"
+                        placeholder="johndoe@example.com"
+                        iconSrc="/assets/icons/email.svg"
+                        iconAlt="email"
+                    />
+                    <CustomFormController
+                        fieldType={FormFieldType.PHONE_INPUT}
+                        control={form.control}
+                        name="phone"
+                        label="Phone number"
+                        placeholder="(555) 123-4567"
                     />
                 </FieldGroup>
             </form>
